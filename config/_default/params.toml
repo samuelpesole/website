@@ -1,0 +1,56 @@
+colorScheme = "ocean"
+defaultAppearance = "light"
+autoSwitchAppearance = true
+enableSearch = true
+enableCodeCopy = true
+disableTextInHeader = false
+
+[header]
+  layout = "basic"
+
+[footer]
+  showMenu = true
+  showCopyright = true
+  showThemeAttribution = false
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+[homepage]
+  layout = "profile"
+  showRecent = true
+  showRecentItems = 5
+  showMoreLink = true
+  showMoreLinkDest = "posts"
+  cardView = false
+
+[article]
+  showDate = true
+  showAuthor = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showHeadingAnchors = true
+  showPagination = true
+  showReadingTime = true
+  showTableOfContents = true
+  showTaxonomies = true
+  showWordCount = false
+  showZenMode = false
+
+[list]
+  showBreadcrumbs = false
+  showSummary = true
+  showTableOfContents = false
+  showCards = false
+  groupByYear = true
+
+[taxonomy]
+  showTermCount = true
+
+[term]
+  showTableOfContents = false
+  groupByYear = false
+
+# Contact form (Formspree). Create a free form at https://formspree.io
+# and paste the form ID (the part after /f/) here.
+[contact]
+  formspreeId = "YOUR_FORM_ID"

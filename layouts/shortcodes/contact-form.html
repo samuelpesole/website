@@ -1,0 +1,18 @@
+{{- $id := site.Params.contact.formspreeId -}}
+<form class="contact-form" action="https://formspree.io/f/{{ $id }}" method="POST">
+  <label for="cf-name">{{ i18n "contact_name" }}</label>
+  <input id="cf-name" type="text" name="name" autocomplete="name" required>
+
+  <label for="cf-email">{{ i18n "contact_email" }}</label>
+  <input id="cf-email" type="email" name="email" autocomplete="email" required>
+
+  <label for="cf-message">{{ i18n "contact_message" }}</label>
+  <textarea id="cf-message" name="message" rows="6" required></textarea>
+
+  {{/* Honeypot field against spam bots */}}
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="cf-hp" aria-hidden="true">
+  <input type="hidden" name="_language" value="{{ site.Language.Lang }}">
+
+  <p class="cf-privacy">{{ i18n "contact_privacy" }}</p>
+  <button type="submit">{{ i18n "contact_send" }}</button>
+</form>

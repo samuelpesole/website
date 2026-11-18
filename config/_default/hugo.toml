@@ -1,0 +1,18 @@
+# Site address (GitHub Pages project site: repo samuelpesole/website)
+baseURL = "https://samuelpesole.github.io/website/"
+theme = "blowfish"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+summaryLength = 0
+enableEmoji = true
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

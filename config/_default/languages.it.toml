@@ -1,0 +1,21 @@
+disabled = false
+locale = "it"
+label = "Italiano"
+weight = 2
+title = "Samuel Pesole"
+
+[params]
+  displayName = "IT"
+  isoCode = "it"
+  rtl = false
+  dateFormat = "2 January 2006"
+  description = "Samuel Pesole — sicurezza, strategia e identità digitale. Appunti, paper e idee."
+
+[params.author]
+  name = "Samuel Pesole"
+  headline = "Studi strategici · Cybersecurity · Identity & Access Management"
+  bio = "Systems engineer specializzato in IAM e cybersecurity, laureato in Scienze della Difesa e della Sicurezza, ora alla magistrale in Studi Strategici e Politiche di Sicurezza."
+  links = [
+    { linkedin = "https://www.linkedin.com/in/samuel-pesole/" },
+    { github = "https://github.com/samuelpesole" },
+  ]

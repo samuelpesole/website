@@ -1,0 +1,20 @@
+[[main]]
+  name = "About"
+  pageRef = "about"
+  weight = 10
+
+[[main]]
+  name = "Blog"
+  pageRef = "posts"
+  weight = 20
+
+[[main]]
+  name = "Contact"
+  pageRef = "contact"
+  weight = 30
+
+[[main]]
+  identifier = "linkedin"
+  pre = "linkedin"
+  url = "https://www.linkedin.com/in/samuel-pesole/"
+  weight = 40

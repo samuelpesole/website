@@ -1,0 +1,14 @@
+.contact-form { display: flex; flex-direction: column; gap: .5rem; max-width: 36rem; }
+.contact-form label { font-weight: 600; margin-top: .5rem; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: .6rem .75rem; border-radius: .375rem;
+  border: 1px solid rgb(var(--color-neutral-400)); background: transparent; color: inherit; font: inherit;
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid rgb(var(--color-primary-500)); outline-offset: 1px; }
+.contact-form button {
+  align-self: flex-start; margin-top: .75rem; padding: .6rem 1.25rem; border-radius: .375rem; border: 0;
+  background: rgb(var(--color-primary-600)); color: #fff; font-weight: 600; cursor: pointer;
+}
+.contact-form button:hover { background: rgb(var(--color-primary-700)); }
+.contact-form .cf-hp { position: absolute; left: -9999px; }
+.contact-form .cf-privacy { font-size: .85rem; opacity: .75; margin: .5rem 0 0; }
