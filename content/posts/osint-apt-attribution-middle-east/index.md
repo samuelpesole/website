@@ -29,7 +29,7 @@ When a hospital, ministry or energy company is breached, "who was behind it?" qu
 
 Rid and Buchanan's classic paper frames attribution as [an art as much as a science](https://doi.org/10.1080/01402390.2015.1115975): technical, operational and strategic layers each give partial answers, and the final call is a judgement under uncertainty. Several things make it harder still:
 
-- **False flags.** Attackers can deliberately plant misleading clues. The best-known public case is the 2018 Winter Olympics "Olympic Destroyer" incident, where researchers described code artefacts that imitated another group's [Kaspersky analysis](https://securelist.com/olympic-destroyer-is-here-to-trick-the-industry/84295/). It was not in the Middle East, but the lesson transfers.
+- **False flags.** Attackers can deliberately plant misleading clues. The best-known public case is the 2018 Winter Olympics "Olympic Destroyer" incident, where researchers described code artefacts forged to imitate the North Korea-linked Lazarus group, a deception Kaspersky researchers concluded was a deliberate false flag ([Kaspersky analysis](https://securelist.com/olympic-destroyer-is-here-to-trick-the-industry/84295/)). It was not in the Middle East, but the lesson transfers.
 - **Proxies and contractors.** Governments may work through front companies or loosely affiliated operators, which makes "the state" versus "a criminal group" a spectrum.
 - **Overlapping clusters.** Different vendors track the same activity under different names, and one name can bundle several teams.
 - **Shared infrastructure and tools.** Commodity and publicly available tools mean that "same tool" does not mean "same actor".
@@ -47,9 +47,9 @@ Open-source analysts, whether at vendors, CERTs or universities, tend to follow 
 
 The following are only examples, using ATT&CK's public group pages. Vendor naming differs, and ATT&CK itself notes overlaps, so treat this as a map, not a verdict.
 
-- [MuddyWater](https://attack.mitre.org/groups/G0069/): described in public reporting as a cyber-espionage group; a [US–UK–Australia–Canada joint advisory (CISA AA22-055A)](https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-055a) assessed it as a subordinate element of Iran's Ministry of Intelligence and Security (MOIS). The advisory is government-sourced and explicit about the attribution. *(link not machine-checked: site blocks automated access)*
-- [OilRig](https://attack.mitre.org/groups/G0049/): an Iran-linked group reported to target governments and sectors across the Middle East. Attribution here rests on vendor assessments rather than an official statement [unverified: confirm the strength of government attribution].
-- [APT33](https://attack.mitre.org/groups/G0064/) and [Magic Hound](https://attack.mitre.org/groups/G0059/): other Iran-linked clusters in public reporting, with different mixes of aviation/energy targeting and social-engineering-heavy intrusions.
+- [MuddyWater](https://attack.mitre.org/groups/G0069/): described in public reporting as a cyber-espionage group; a [joint advisory by the FBI, CISA, US Cyber Command's CNMF and the UK NCSC (AA22-055A)](https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-055a) states it is a subordinate element of Iran's Ministry of Intelligence and Security (MOIS). This is an explicit government attribution, the strongest kind in this list.
+- [OilRig](https://attack.mitre.org/groups/G0049/): an Iran-linked group reported to target governments and sectors across the Middle East. MITRE ATT&CK calls it a *suspected* Iranian group, with attribution based on infrastructure referencing Iran and targeting aligned with state interests, i.e. moderate-confidence, circumstantial evidence. Links to MOIS appear in secondary reporting; I have not verified an official government statement [unverified].
+- [APT33](https://attack.mitre.org/groups/G0064/) and [Magic Hound](https://attack.mitre.org/groups/G0059/): other Iran-linked clusters in public reporting (attribution here is also largely vendor-based, so treat it as assessed rather than proven), with different mixes of aviation/energy targeting and social-engineering-heavy intrusions.
 
 Notice the pattern: names, sponsors and confidence differ by source. That is exactly why analysts cross-check.
 
@@ -61,7 +61,7 @@ Looking at ATT&CK entries for these groups, a common thread is initial access vi
 
 The nice thing about identity defence is that it doesn't depend on getting attribution right:
 
-- **Phishing-resistant MFA.** SMS codes and push approvals can be phished or fatigued; FIDO2/WebAuthn and passkeys bind authentication to the legitimate site. CISA publishes a [fact sheet on implementing phishing-resistant MFA](https://www.cisa.gov/resources-tools/resources/implementing-phishing-resistant-mfa) *(not machine-checked)*.
+- **Phishing-resistant MFA.** SMS codes and push approvals can be phished or fatigued; FIDO2/WebAuthn and passkeys bind authentication to the legitimate site. CISA publishes a [fact sheet on implementing phishing-resistant MFA](https://www.cisa.gov/sites/default/files/2023-01/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf).
 - **Privileged access management (PAM).** Fewer standing admin rights, just-in-time elevation, vaulted credentials and session recording shrink what a stolen password can do.
 - **Monitoring identity signals.** Impossible travel, unusual consent grants, new MFA enrolments and spraying patterns are detectable if logs are collected and someone looks at them.
 - **Zero Trust mindset.** Assume credentials will be stolen, so verify continuously and limit blast radius.
