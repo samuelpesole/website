@@ -60,6 +60,7 @@ Never read `themes/`, `public/`, `resources/` unless the task is about the theme
 - Stop as soon as the done criteria are met.
 
 ## 8. Decisions log (newest first, one line each)
+- 2026-11-18 Single hub task SAM-6 for Samuel; one sub-task per post (SAM-7/8/9, weekly). Posts on OSINT/cyber-geopolitics/IAM: open sources only, no operational detail, attribution with confidence levels.
 - 2026-11-18 Team: Web Engineer, Research Writer, Fact-checker, Translator IT (Sonnet, on-demand only).
 - 2026-11-18 Repo `samuelpesole/website` → URL under `/website/`. Rename to `samuelpesole.github.io` = optional later.
 - 2026-11-18 Graphics: Blowfish, ocean, auto light/dark, narrow reading column, no photo yet.
@@ -68,4 +69,4 @@ Never read `themes/`, `public/`, `resources/` unless the task is about the theme
 ## 9. Open items
 - Samuel: enable GitHub Pages (Settings → Pages → Source: GitHub Actions) and re-run deploy.
 - Samuel: Formspree form id.
-- Samuel: first post topics.
+- Topics weeks 1–3 set (Middle East APT attribution; Taiwan cognitive warfare; Indo-Pacific supply chain IAM) — see SAM-6.
