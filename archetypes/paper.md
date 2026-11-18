@@ -7,16 +7,18 @@ categories: ["Papers"]
 tags: []
 ---
 
-> **Paper:** _Full title_ — Venue, Year. [DOI / link](https://doi.org/...)
+> **Paper:** _Full title_ — Authors, Venue, Year. [DOI](https://doi.org/...)
 
-## In one sentence
+## Abstract
+<!-- 100-150 words: what the paper argues and why it matters. -->
 
-## Why it matters
+## Argument and method
 
-## Key points
+## Evidence
 
-1.
-2.
-3.
+## Critical assessment
+<!-- Strengths, weaknesses, what the paper does not explain. -->
 
-## What I'd do next
+## Implications
+
+## References

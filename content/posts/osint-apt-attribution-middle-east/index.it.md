@@ -1,75 +1,88 @@
 ---
-title: "Chi è stato? Attribuire gli hacker statali in Medio Oriente con le fonti aperte"
+title: "Attribuire le operazioni cyber statali in Medio Oriente: fonti aperte, livelli di confidenza e centralità dell'identità nella difesa"
 date: 2026-11-18
 draft: true
-description: "Come gli analisti attribuiscono gli APT statali in Medio Oriente usando solo fonti aperte, e perché le identità sono il primo bersaglio da proteggere."
+description: "Come si attribuiscono da fonti aperte le operazioni cyber statali in Medio Oriente e perché questa incertezza favorisce una difesa centrata sull'identità."
 categories: ["Cybersecurity", "Geopolitica"]
-tags: ["attribuzione", "OSINT", "APT", "Medio Oriente", "IAM", "MITRE ATT&CK"]
+tags: ["attribuzione", "OSINT", "APT", "Iran", "Medio Oriente", "IAM", "analisi di intelligence"]
 ---
 
-> **Perimetro:** analisi basata solo su fonti pubbliche (report di vendor, CERT e governi, letteratura accademica, MITRE ATT&CK). Nessun dettaglio operativo, nessun indicatore, nessuno strumento.
+> **Perimetro e metodo.** L'analisi si basa esclusivamente su fonti pubbliche: advisory governativi, report dei vendor, la knowledge base MITRE ATT&CK e la letteratura accademica. Non contiene indicatori di compromissione, strumenti né dettagli operativi.
 
-## In una frase
+## Abstract
 
-Attribuire un'operazione cyber a uno Stato è un giudizio probabilistico, non una prova; la cosa più affidabile che i difensori possono fare è proteggere le identità che questi gruppi continuano a prendere di mira.
+Attribuire un'operazione cyber a uno Stato non è un accertamento forense. È un giudizio analitico formulato in condizioni di incertezza e comunicato con una finalità politica. L'articolo esamina come l'attribuzione venga costruita a partire da fonti aperte, prendendo come caso di studio i gruppi di intrusione riconducibili all'Iran attivi in Medio Oriente, e sostiene tre tesi. Primo, la documentazione pubblica su questi gruppi è *stratificata*: poche attribuzioni governative formali convivono con un corpus molto più ampio di valutazioni dei vendor, fondate su evidenze indiziarie e su nomenclature non coerenti. Secondo, il valore analitico dell'attribuzione da fonti aperte risiede meno nell'identificazione del mandante che nell'esplicitazione del grado di confidenza di ogni passaggio inferenziale. Terzo, poiché questa incertezza non è eliminabile, gli investimenti difensivi non dovrebbero dipendere da essa. Nei casi esaminati i gruppi convergono su una stessa superficie d'attacco, le identità digitali: per questo i controlli centrati sull'identità restano validi chiunque sia l'avversario.
 
-## Perché è importante
+## 1. Introduzione
 
-Quando un ospedale, un ministero o una società energetica subisce una violazione, la domanda "chi c'è dietro?" diventa presto politica: sanzioni, risposte diplomatiche, perfino segnali di deterrenza. Il Medio Oriente è un teatro denso da questo punto di vista: rivalità regionali, dinamiche per procura e gruppi sofisticati legati agli Stati si sovrappongono. Un'attribuzione sbagliata o troppo sicura può far degenerare una crisi, mentre ignorare del tutto l'attribuzione lascia i difensori ciechi su chi probabilmente colpirà dopo. Da studente di studi strategici che lavora nell'IAM, trovo affascinante questo incrocio: l'attribuzione è la domanda *strategica*, la protezione delle identità è la risposta *pratica*.
+Le operazioni cyber attribuite a Stati sono ormai una componente ordinaria della competizione in Medio Oriente. Rivalità regionali, regimi sanzionatori e relazioni per procura creano forti incentivi all'azione coperta nel cyberspazio, mentre i bassi costi di accesso permettono agli Stati di agire tramite unità difficili da ricondurre a loro. Per i decisori politici, la domanda «chi è stato?» precede qualsiasi risposta proporzionata: sanzioni, incriminazioni, démarche diplomatiche o segnali di deterrenza. Per chi difende, la stessa domanda è spesso trattata come presupposto per stabilire le priorità.
 
-## Punti chiave
+L'articolo affronta due domande collegate: *quanto possono effettivamente stabilire le fonti aperte sulla sponsorizzazione statale delle operazioni cyber nella regione?* E *quali conseguenze ne derivano per la difesa, se la risposta è «meno di quanto comunemente si ritenga»?*
 
-1. L'attribuzione è difficile per costruzione: false flag, strumenti condivisi, contractor e proxy confondono il quadro.
-2. L'attribuzione OSINT funziona *raggruppando* le evidenze (infrastruttura, malware, comportamento, bersagli) e dichiarando un **livello di confidenza**, mai una certezza.
-3. Le TTP mappate su MITRE ATT&CK durano più degli artefatti tecnici, che costano poco da cambiare.
-4. I report pubblici collegano diversi gruppi della regione agli interessi dello Stato iraniano; i nomi cambiano da vendor a vendor, quindi le sovrapposizioni vanno trattate con cura.
-5. In tutte queste campagne credenziali e account sono un bersaglio ricorrente: MFA resistente al phishing, gestione degli accessi privilegiati e monitoraggio delle identità ripagano chiunque sia l'attaccante.
+## 2. L'attribuzione come problema di giudizio
 
-## Perché attribuire è difficile
+Il riferimento più influente resta il «Q Model» di Rid e Buchanan, che descrive l'attribuzione come un processo stratificato. Si parte dalle evidenze tecniche (artefatti, infrastruttura), si passa all'analisi operativa (come è stata condotta l'intrusione) e alla valutazione strategica (chi ne trae beneficio e chi potrebbe autorizzarla), fino alla comunicazione verso un pubblico ([Rid & Buchanan, 2015](https://doi.org/10.1080/01402390.2014.977382)). Due implicazioni del modello sono rilevanti. L'attribuzione è una questione di grado e non binaria, e la sua qualità dipende dal giudizio degli analisti e dal contesto politico tanto quanto dalle evidenze tecniche.
 
-Il classico articolo di Rid e Buchanan descrive l'attribuzione come [un'arte quanto una scienza](https://doi.org/10.1080/01402390.2015.1115975): i livelli tecnico, operativo e strategico danno ciascuno risposte parziali, e la decisione finale è un giudizio in condizioni di incertezza. Diversi fattori la complicano ulteriormente:
+Egloff sviluppa questa prospettiva trattando l'attribuzione *pubblica* come un atto politico a sé stante. Gli Stati scelgono se, quando e come attribuire, e lo fanno per perseguire obiettivi come la costruzione di norme, il segnalamento o la mobilitazione degli alleati, non soltanto per riportare un accertamento ([Egloff, 2020](https://doi.org/10.1093/cybsec/tyaa012)). Il quadro normativo riflette questa cautela. Il rapporto 2015 del Gruppo di esperti governativi delle Nazioni Unite, recepito dall'Assemblea Generale, include tra le norme volontarie quella secondo cui gli Stati, nel rispondere agli incidenti, dovrebbero considerare tutte le informazioni rilevanti, compresi il contesto più ampio e le difficoltà di attribuzione nell'ambiente ICT ([doc. ONU A/70/174](https://undocs.org/A/70/174)).
 
-- **False flag.** Gli attaccanti possono piazzare deliberatamente indizi fuorvianti. Il caso pubblico più noto è l'incidente "Olympic Destroyer" alle Olimpiadi invernali del 2018, in cui i ricercatori hanno descritto artefatti nel codice falsificati per imitare il gruppo Lazarus, legato alla Corea del Nord; i ricercatori di Kaspersky hanno concluso che si trattava di una false flag deliberata ([analisi Kaspersky](https://securelist.com/olympic-destroyer-is-here-to-trick-the-industry/84295/)). Non riguarda il Medio Oriente, ma la lezione vale anche lì.
-- **Proxy e contractor.** I governi possono operare tramite società di facciata od operatori legati in modo informale, il che rende "lo Stato" e "un gruppo criminale" due estremi di uno spettro.
-- **Cluster sovrapposti.** Vendor diversi tracciano la stessa attività con nomi diversi, e un solo nome può raggruppare più team.
-- **Infrastrutture e strumenti condivisi.** Con strumenti commerciali o pubblicamente disponibili, "stesso strumento" non significa "stesso attore".
+Tre caratteristiche strutturali rendono l'attribuzione difficile nella pratica:
 
-## Come funziona davvero l'attribuzione OSINT (ad alto livello)
+- **Inganno deliberato.** L'operazione «Olympic Destroyer» del 2018 contro i Giochi Olimpici invernali di Pyeongchang conteneva artefatti di codice inseriti per imitare il gruppo Lazarus; i ricercatori di Kaspersky hanno concluso che si trattava di un false flag deliberato ([Kaspersky, 2018](https://securelist.com/olympic-destroyer-is-here-to-trick-the-industry/84295/)). Il caso è esterno alla regione, ma dimostra che gli artefatti tecnici possono essere fabbricati.
+- **Agire per interposta persona.** I governi possono operare tramite contractor, società di copertura od operatori legati in modo informale. Il confine tra attore «statale» e «non statale» diventa allora un continuum di controllo, non una categoria.
+- **Frammentazione tassonomica.** I vendor raggruppano e denominano l'attività in modo diverso, per cui un'etichetta può comprendere più team e uno stesso team può comparire sotto più etichette.
 
-Gli analisti di fonti aperte, che lavorino per vendor, CERT o università, tendono a seguire una logica simile, spesso ispirata al [Diamond Model](https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf): guardare *avversario*, *capacità*, *infrastruttura* e *vittima*, e vedere quali pezzi stanno insieme.
+## 3. Come si costruisce l'attribuzione da fonti aperte
 
-- **I report pubblici come materia prima.** Gli advisory congiunti dei governi e le analisi dei vendor sono la spina dorsale. Confrontare report indipendenti è la mossa più utile in assoluto: se team scollegati arrivano alla stessa conclusione, la confidenza sale.
-- **Vittimologia.** Chi viene colpito (settori, Paesi, tempistica rispetto agli eventi politici) dice molto sugli interessi del probabile mandante.
-- **Comportamenti più che artefatti.** Domini e hash dei file scadono in fretta. I comportamenti (come si ottiene l'accesso, come si mantiene la persistenza) sono più stabili, e [MITRE ATT&CK](https://attack.mitre.org/groups/) li cataloga gruppo per gruppo.
-- **Dichiarare la confidenza.** I buoni report separano i fatti dalle valutazioni e indicano "confidenza bassa / moderata / alta". Da lettore, controlla sempre quale delle due stai leggendo.
+Gli analisti OSINT organizzano tipicamente le evidenze attorno ai quattro vertici del [Diamond Model](https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf) (avversario, capacità, infrastruttura, vittima) e attribuiscono verificando se questi elementi risultano coerenti tra più intrusioni. Le classi di evidenza non sono però equivalenti:
 
-## Alcuni gruppi della regione citati nei report pubblici
+| Classe di evidenza | Esempio | Durata | Esposizione all'inganno |
+|---|---|---|---|
+| Artefatti tecnici | domini, hash, frammenti di codice | bassa: economici da cambiare | alta: possono essere inseriti ad arte |
+| Comportamento (TTP) | schemi di accesso iniziale e persistenza, catalogati in [MITRE ATT&CK](https://attack.mitre.org/groups/) | medio-alta | media |
+| Vittimologia | settori, Paesi, tempistiche rispetto a eventi politici | alta | bassa, ma ambigua: molti attori condividono gli stessi interessi |
+| Divulgazione ufficiale | advisory governativi congiunti, incriminazioni | n.d. | bassa sul piano tecnico, ma politicamente orientata |
 
-Quelli che seguono sono solo esempi, tratti dalle pagine pubbliche dei gruppi su ATT&CK. I nomi variano da vendor a vendor e ATT&CK stesso segnala sovrapposizioni: va letta come una mappa, non come un verdetto.
+Due salvaguardie metodologiche distinguono l'analisi dall'asserzione. La prima è la *convergenza di fonti indipendenti*: la confidenza dovrebbe crescere solo quando analisti con dati e incentivi diversi giungono a conclusioni compatibili. La seconda è un *linguaggio esplicito sulla confidenza*. Gli standard analitici della comunità di intelligence statunitense impongono di esprimere e motivare l'incertezza e di distinguere le informazioni di base dal giudizio analitico ([ODNI, ICD 203](https://www.dni.gov/files/documents/ICD/ICD-203.pdf)). Tecniche strutturate come l'Analysis of Competing Hypotheses sono nate proprio per contrastare il bias di conferma, a cui l'attribuzione è particolarmente esposta ([Heuer, 1999](https://www.cia.gov/resources/csi/books-monographs/psychology-of-intelligence-analysis-2/)). Davanti a qualsiasi affermazione di attribuzione, il lettore dovrebbe quindi chiedersi: *a quale livello del Q Model si riferisce questa evidenza, e con quale confidenza dichiarata?*
 
-- [MuddyWater](https://attack.mitre.org/groups/G0069/): descritto nei report pubblici come gruppo di cyber-spionaggio; un [advisory congiunto di FBI, CISA, CNMF dello US Cyber Command e NCSC britannico (AA22-055A)](https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-055a) afferma che è un'articolazione subordinata del Ministero dell'Intelligence e della Sicurezza iraniano (MOIS). È un'attribuzione governativa esplicita, la più forte di questo elenco.
-- [OilRig](https://attack.mitre.org/groups/G0049/): gruppo legato all'Iran, segnalato per attacchi a governi e settori in tutto il Medio Oriente. MITRE ATT&CK lo definisce un gruppo iraniano *sospetto*, con un'attribuzione basata su infrastrutture che rimandano all'Iran e su bersagli allineati agli interessi dello Stato: evidenze circostanziali, a confidenza moderata. I legami con il MOIS compaiono in fonti secondarie; non ho verificato una dichiarazione governativa ufficiale [unverified].
-- [APT33](https://attack.mitre.org/groups/G0064/) e [Magic Hound](https://attack.mitre.org/groups/G0059/): altri cluster legati all'Iran nei report pubblici (anche qui l'attribuzione è in gran parte dei vendor, quindi va considerata una valutazione, non una prova), con un diverso mix di bersagli nell'aviazione e nell'energia e di intrusioni basate soprattutto sull'ingegneria sociale.
+## 4. Caso di studio: i gruppi riconducibili all'Iran in Medio Oriente
 
-Nota lo schema: nomi, mandanti e confidenza cambiano a seconda della fonte. È proprio per questo che gli analisti incrociano i dati.
+La documentazione pubblica collega agli interessi dello Stato iraniano diversi gruppi di intrusione attivi nel Golfo e nella regione più ampia. Letta in modo comparato, però, non è uniforme: è stratificata in base alla solidità dell'attribuzione.
 
-## Perché le identità sono il bersaglio ricorrente
+- **Attribuzione governativa formale.** Un advisory congiunto di FBI, CISA, Cyber National Mission Force dello US Cyber Command e NCSC britannico afferma che [MuddyWater](https://attack.mitre.org/groups/G0069/) è un elemento subordinato del Ministero dell'Intelligence e della Sicurezza iraniano (MOIS) ([CISA, AA22-055A](https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-055a)). È l'attribuzione più solida presente nella documentazione pubblica sulla regione: esplicita, multinazionale e riferita a un'organizzazione precisa.
+- **Attribuzione valutativa su base indiziaria.** Per [OilRig](https://attack.mitre.org/groups/G0049/), MITRE ATT&CK parla di un gruppo iraniano *sospetto*, citando infrastrutture con riferimenti all'Iran e un targeting coerente con gli interessi statali iraniani. Fonti secondarie lo collegano al MOIS, ma per questo articolo non è stato possibile verificare una dichiarazione governativa ufficiale che stabilisca tale legame [non verificato].
+- **Attribuzione prevalentemente di fonte vendor.** [APT33](https://attack.mitre.org/groups/G0064/) e [Magic Hound](https://attack.mitre.org/groups/G0059/) sono ricondotti all'Iran soprattutto attraverso le analisi dei vendor su vittimologia e modus operandi. APT33 è associato ad attacchi ai settori aeronautico ed energetico, Magic Hound a intrusioni fondate in larga misura sull'ingegneria sociale.
 
-Scorrendo le voci ATT&CK di questi gruppi, un filo comune è l'accesso iniziale tramite [phishing](https://attack.mitre.org/techniques/T1566/) e abuso di credenziali, incluso il [password spraying](https://attack.mitre.org/techniques/T1110/003/). Ha senso: un account valido è silenzioso, economico e spesso più potente di un malware. Gli account privilegiati e di servizio valgono ancora di più, perché aprono la porta a tutto il resto.
+Ne derivano tre osservazioni analitiche. Primo, **la documentazione sull'attribuzione nella regione si fonda soprattutto sulla valutazione, non sulla divulgazione**. Solo una piccola parte dell'attività comunemente definita «iraniana» è oggetto di un'attribuzione governativa esplicita, e il resto è dedotto da vittimologia e modus operandi. Si tratta di un'inferenza ragionevole, che però non equivale a un'attribuzione organizzativa. Secondo, **in questo teatro la vittimologia è particolarmente ambigua**, perché diversi attori regionali ed extraregionali hanno interessi sovrapposti verso gli stessi governi, operatori energetici e fornitori di telecomunicazioni. «Un targeting coerente con lo Stato X» restringe quindi il campo meno di quanto sembri. Terzo, **la frammentazione dei nomi nasconde la reale unità di analisi**. Se MuddyWater, OilRig o APT33 corrispondano a organizzazioni distinte, a contractor condivisi o a team sovrapposti non è determinabile da fonti aperte. Le conclusioni politiche che trattano le etichette dei vendor come fatti organizzativi vanno oltre ciò che le evidenze consentono.
 
-## Cosa può fare l'IAM (e perché non dipende dall'attaccante)
+## 5. Il bersaglio convergente: l'identità digitale
 
-Il bello della difesa delle identità è che non dipende dall'aver indovinato l'attribuzione:
+I gruppi differiscono per mandante, livello di confidenza e nomenclatura, ma il loro comportamento documentato nella fase di accesso iniziale converge. Le schede ATT&CK di questi gruppi registrano ripetutamente [phishing](https://attack.mitre.org/techniques/T1566/), [password spraying](https://attack.mitre.org/techniques/T1110/003/) e l'uso di [account validi](https://attack.mitre.org/techniques/T1078/). La convergenza ha una logica strategica. Un'identità legittima compromessa fornisce un accesso economico, silenzioso e difficile da distinguere dall'attività normale. Offre inoltre negabilità, perché l'attività svolta con credenziali reali lascia pochi artefatti distintivi.
 
-- **MFA resistente al phishing.** Codici SMS e notifiche push possono essere carpiti o approvati per sfinimento; FIDO2/WebAuthn e le passkey legano l'autenticazione al sito legittimo. CISA pubblica una [scheda su come implementare l'MFA resistente al phishing](https://www.cisa.gov/sites/default/files/2023-01/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf).
-- **Gestione degli accessi privilegiati (PAM).** Meno diritti amministrativi permanenti, elevazione just-in-time, credenziali in vault e registrazione delle sessioni riducono ciò che una password rubata può fare.
-- **Monitoraggio dei segnali di identità.** Viaggi impossibili, consensi anomali alle applicazioni, nuove registrazioni MFA e schemi di spraying sono rilevabili, se i log vengono raccolti e qualcuno li guarda.
-- **Mentalità Zero Trust.** Dare per scontato che le credenziali verranno rubate, quindi verificare di continuo e limitare il raggio d'azione.
+Da qui un argomento di disaccoppiamento. Se la confidenza nell'attribuzione è strutturalmente limitata, e se gli avversari considerati sfruttano tutti la stessa superficie, gli investimenti difensivi non dovrebbero attendere l'attribuzione. I controlli che aumentano il costo della compromissione delle identità funzionano a prescindere dal mandante:
 
-## Cosa farei adesso
+- **Autenticazione resistente al phishing.** FIDO2/WebAuthn vincola l'autenticazione all'origine legittima, neutralizzando il phishing delle credenziali e la MFA fatigue ([scheda CISA](https://www.cisa.gov/sites/default/files/2023-01/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf)).
+- **Gestione degli accessi privilegiati (PAM).** Eliminare i privilegi permanenti, adottare l'elevazione just-in-time e custodire le credenziali in vault limita fin dove può arrivare un singolo account compromesso.
+- **Rilevamento delle minacce all'identità.** Schemi di spraying, accessi anomali, nuove registrazioni MFA e consensi applicativi insoliti sono segnali osservabili, a patto che i log vengano raccolti e analizzati.
 
-- Leggere due o tre report pubblici indipendenti sullo stesso gruppo e confrontarne le dichiarazioni di confidenza.
-- Mappare alcune delle tecniche ATT&CK citate sui propri controlli di identità e annotare le lacune.
-- Per approfondire: confrontare come governi (advisory congiunti) e vendor formulano l'attribuzione, e cosa implica per le risposte politiche.
+In questa prospettiva, la governance delle identità è il contraltare difensivo del problema dell'attribuzione. L'attribuzione si chiede *chi* con un'incertezza irriducibile, mentre la difesa centrata sull'identità riduce il valore dell'accesso che ogni possibile avversario cerca di ottenere.
 
-*Avvertenza: tutto ciò che è scritto qui proviene da fonti pubbliche ed è una semplificazione analitica, non una valutazione di uno specifico incidente o di una specifica organizzazione.*
+## 6. Limiti
+
+L'analisi eredita i bias delle sue fonti. I report dei vendor riflettono la visibilità commerciale di ciascun fornitore, e le divulgazioni dei governi occidentali riflettono scelte politiche su cosa rendere pubblico. Entrambi sottorappresentano l'attività contro bersagli non occidentali e le operazioni non rilevate. Il caso di studio riguarda solo l'attività riconducibile all'Iran, e non esamina altri attori statali presenti nella regione. Infine, la convergenza sull'identità si basa su tecniche catalogate: indica un pattern documentato, non una frequenza misurata.
+
+## 7. Conclusioni
+
+Le fonti aperte possono sostenere un'affermazione ben calibrata sul fatto che un gruppo di intrusione serva gli interessi di un determinato Stato. Solo raramente possono sostenere un'affermazione su quale organizzazione lo abbia diretto, e mai senza una divulgazione ufficiale. Il contributo analitico dell'attribuzione OSINT sta quindi meno nel nominare gli avversari che nel rendere l'incertezza esplicita e tracciabile. Per chi difende, l'implicazione è che la persistente incertezza dell'attribuzione depone a favore di controlli centrati sull'identità, il cui valore non dipende dal risolverla.
+
+## Riferimenti
+
+- CISA et al. (2022). *Iranian Government-Sponsored Actors Conduct Cyber Operations Against Global Government and Commercial Networks* (AA22-055A). [Link](https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-055a)
+- CISA (2022). *Implementing Phishing-Resistant MFA* (fact sheet). [Link](https://www.cisa.gov/sites/default/files/2023-01/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf)
+- Caltagirone, S., Pendergast, A. & Betz, C. (2013). *The Diamond Model of Intrusion Analysis*. [Link](https://www.activeresponse.org/wp-content/uploads/2013/07/diamond.pdf)
+- Egloff, F. J. (2020). Public attribution of cyber intrusions. *Journal of Cybersecurity*, 6(1). [doi:10.1093/cybsec/tyaa012](https://doi.org/10.1093/cybsec/tyaa012)
+- Heuer, R. J. (1999). *Psychology of Intelligence Analysis*. CIA Center for the Study of Intelligence. [Link](https://www.cia.gov/resources/csi/books-monographs/psychology-of-intelligence-analysis-2/)
+- Kaspersky GReAT (2018). *Olympic Destroyer is here to trick the industry*. [Link](https://securelist.com/olympic-destroyer-is-here-to-trick-the-industry/84295/)
+- MITRE ATT&CK. Gruppi G0049, G0059, G0064, G0069; tecniche T1078, T1110.003, T1566. [Link](https://attack.mitre.org/groups/)
+- ODNI (2015). *Intelligence Community Directive 203: Analytic Standards*. [Link](https://www.dni.gov/files/documents/ICD/ICD-203.pdf)
+- Rid, T. & Buchanan, B. (2015). Attributing Cyber Attacks. *Journal of Strategic Studies*, 38(1–2), 4–37. [doi:10.1080/01402390.2014.977382](https://doi.org/10.1080/01402390.2014.977382)
+- Nazioni Unite (2015). *Report of the Group of Governmental Experts on Developments in the Field of Information and Telecommunications in the Context of International Security* (A/70/174). [Link](https://undocs.org/A/70/174)
